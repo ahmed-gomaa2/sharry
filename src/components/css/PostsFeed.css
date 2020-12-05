@@ -1,0 +1,4 @@
+.postsFeed {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Landing from './components/Landing';
+import * as actions from './actions';
+import {connect} from 'react-redux';
+import PostsFeed from './components/PostsFeed';
 
-function App() {
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {props.user.uid ? (
+        <PostsFeed />
+      ) : (
+        <Landing />
+      )}
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    user: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps, actions)(App);

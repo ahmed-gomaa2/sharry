@@ -1,0 +1,83 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 20px auto;
+    border: 1px solid lightgray;
+    background-color: lightgreen;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.post__top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post__top p {
+    margin-left: 10px;
+}
+
+.post__middle img {
+    width: 100%;
+}
+
+.post__bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.post__likesDislikes {
+    display: flex;
+    flex-direction: row;
+    padding-left: 5px;
+}
+
+.post__likeNumber {
+    display: flex !important;
+    color: blue;
+}
+
+.post__dislikeNumber {
+    display: flex;
+    color: red;
+}
+
+.post__likeDislike {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.post__like {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 50% !important;
+    background-color: lightblue;
+    padding: 5px !important;
+    cursor: pointer;
+    transition: all ease-in-out .2s !important;
+}
+
+.post__like:hover {
+    background-color: blue;
+    color: white;
+}
+
+.post__dislike {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 50% !important;
+    background-color: lightpink;
+    padding: 5px !important;
+    cursor: pointer;
+    transition: all ease-in-out .2s !important;
+}
+
+.post__dislike:hover {
+    background-color: red;
+    color: white;
+}

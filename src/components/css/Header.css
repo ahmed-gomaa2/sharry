@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+    background-color: darkmagenta;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+}
+
+.header__logo {
+    font-style: italic;
+    font-family: fantasy;
+    color: white;
+}
+
+.header__right {
+    font-style: italic;
+}
+
+.header__logout {
+    color: wheat;
+    cursor: pointer;
+    transition: all ease-in-out .2s;
+}
+
+.header__logout:hover {
+    color: white;
+}

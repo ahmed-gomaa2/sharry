@@ -1,0 +1,92 @@
+.postCreator {
+    width: 70%;
+    min-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: teal;
+    border-radius: 5px;
+}
+
+.postCreator__formToggler {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+}
+
+.postCreator__avatar {
+    margin: 0 10px 0 0;
+}
+
+.postCreator__formToggler input {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background-color:wheat;
+    color: white;
+    font-style: italic;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.postCreator__userName {
+    color: white;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: white;
+}
+
+.custom-file-upload:hover {
+    background-color: tomato;
+}
+
+.postCreator__form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.postCreator__formItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.postCreator__text {
+    height: 30px;
+    flex: 1;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-style: italic;
+}
+
+.postCreator__form button {
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border: none;
+    outline: none;
+    transition: all ease-in-out .2s;
+    font-style: italic;
+}
+
+.postCreator__form button:hover {
+    background-color: thistle;
+    color: blue;
+}
