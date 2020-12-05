@@ -81,3 +81,13 @@
     background-color: red;
     color: white;
 }
+
+.liked {
+    background: blue;
+    color: white;
+}
+
+.disliked {
+    background: red;
+    color: white;
+}

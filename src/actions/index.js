@@ -60,9 +60,81 @@ export const likePost = (post,id, user) => (dispatch, getState, {getFirebase}) =
     const firestore = firebase.firestore();
     console.log(post)
 
-    firestore.collection('posts').doc(id).set({
-        ...post,
-        likes: post.likes + 1
+    firestore.collection('users').doc(user.uid).collection('disliked').doc(id).get().then(doc => {
+        if(doc.exists) {
+            firestore.collection('users').doc(user.uid).collection('disliked').doc(id).delete().then(() => {
+                firestore.collection('posts').doc(id).set({
+                    ...post,
+                    dislikes: post.dislikes - 1,
+                    likes: post.likes + 1
+                })
+            }).then(() => {
+                firestore.collection('users').doc(user.uid).collection('liked').doc(id).set({
+                    postId: id
+                })
+            })
+        }else {
+            firestore.collection('users').doc(user.uid).collection('liked').doc(id).get().then(doc => {
+                if(doc.exists) {
+                    firestore.collection('users').doc(user.uid).collection('liked').doc(id).delete().then(() => {
+                        firestore.collection('posts').doc(id).set({
+                            ...post,
+                            likes: post.likes -1
+                        })
+                    })
+                }else {
+                    firestore.collection('users').doc(user.uid).collection('liked').doc(id).set({
+                        postId: id
+                    }).then(() => {
+                        firestore.collection('posts').doc(id).set({
+                            ...post,
+                            likes: post.likes + 1
+                        })
+                    })
+                }
+            })
+        }
     })
+
 }
 
+export const dislikePost = (post, id, user) => (dispatch, getState, {getFirebase}) => {
+    const firebase = getFirebase();
+    const firestore = firebase.firestore();
+
+    firestore.collection('users').doc(user.uid).collection('liked').doc(id).get().then(doc => {
+        if(doc.exists) {
+            firestore.collection('users').doc(user.uid).collection('liked').doc(id).delete().then(() => {
+                firestore.collection('posts').doc(id).set({
+                    ...post,
+                    likes: post.likes - 1,
+                    dislikes: post.dislikes + 1
+                })
+            }).then(() => {
+                firestore.collection('users').doc(user.uid).collection('disliked').doc(id).set({
+                    postId: id
+                })
+            })
+        }else {
+            firestore.collection('users').doc(user.uid).collection('disliked').doc(id).get().then(doc => {
+                if(doc.exists) {
+                    firestore.collection('users').doc(user.uid).collection('disliked').doc(id).delete().then(() => {
+                        firestore.collection('posts').doc(id).set({
+                            ...post,
+                            dislikes: post.dislikes -1
+                        })
+                    })
+                }else {
+                    firestore.collection('users').doc(user.uid).collection('disliked').doc(id).set({
+                        postId: id
+                    }).then(() => {
+                        firestore.collection('posts').doc(id).set({
+                            ...post,
+                            dislikes: post.dislikes + 1
+                        })
+                    })
+                }
+            })
+        }
+    })
+}
