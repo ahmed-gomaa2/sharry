@@ -1,0 +1,21 @@
+.comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.comment__avatar {
+    height: 30px;
+    width: 30px;
+}
+
+.comment__text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.comment__timestamp {
+    font-size: x-small;
+}

@@ -11,17 +11,25 @@ const PostsFeed = (props) => {
 
     React.useEffect(() => {
         const db = firebase.firestore();
-        db.collection('posts').orderBy('timestamp','asc').onSnapshot(snapshot => {
-            setPosts(snapshot.docs.map(doc => doc.id))
+        db.collection('posts').orderBy('timestamp','desc').onSnapshot(snapshot => {
+            setPosts(snapshot.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    data: doc.data()
+                }
+            }))
         })
     },[])
-    console.log(posts)
+
+    const randomKey = () => {
+        return Math.floor(Math.random() * 33333333)
+    }
     return (
         <div className='postsFeed'>
             <Header />
             <PostCreator />
             {posts.map(post => (
-                <Post post={post} />
+                <Post key={randomKey()} post={post} />
             ))}
         </div>
     )

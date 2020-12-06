@@ -1,31 +1,39 @@
 .post {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 30%;
     margin: 20px auto;
-    border: 1px solid lightgray;
     background-color: lightgreen;
-    padding: 20px;
     border-radius: 5px;
+    min-width: 400px;
+    padding-bottom: 20px;
 }
 
 .post__top {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 20px 20px 0 20px;
 }
 
 .post__top p {
     margin-left: 10px;
 }
 
+.post__middle {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
 .post__middle img {
-    width: 100%;
+    object-fit: cover;
 }
 
 .post__bottom {
     display: flex;
     flex-direction: column;
+    /*padding: 20px;*/
 }
 
 .post__likesDislikes {
@@ -48,6 +56,9 @@
     display: flex;
     flex-direction: row;
     margin-top: 5px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .post__like {
@@ -56,7 +67,7 @@
     align-items: center;
     width: 50% !important;
     background-color: lightblue;
-    padding: 5px !important;
+    padding: 5px 0 !important;
     cursor: pointer;
     transition: all ease-in-out .2s !important;
 }
@@ -72,7 +83,7 @@
     align-items: center;
     width: 50% !important;
     background-color: lightpink;
-    padding: 5px !important;
+    padding: 5px 0 !important;
     cursor: pointer;
     transition: all ease-in-out .2s !important;
 }
@@ -90,4 +101,63 @@
 .disliked {
     background: red;
     color: white;
+}
+
+.post__comments {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.post__commentCreator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post__commentForm {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    height: 30px;
+}
+
+.post__currentUser {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+.post__commentForm input {
+    display: flex;
+    flex: 1;
+    border: none;
+    outline: none;
+    height: 100%;
+    font-style: italic;
+}
+
+.post__commentForm button {
+    border: none;
+    outline: none;
+    background: aquamarine;
+    color: black;
+    cursor: pointer;
+    height: 32px;
+}
+
+.post__commentForm button:hover {
+    background: aqua;
+}
+
+.post__commentFeed {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 500px) {
+    .post {
+        width: 100%;
+        min-width: 200px;
+    }
 }

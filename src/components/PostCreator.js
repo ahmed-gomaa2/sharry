@@ -3,12 +3,13 @@ import './css/PostCreator.css';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 import {Avatar} from '@material-ui/core';
-import firebase from '../config/firebase';
 
 const PostCreator = (props) => {
     const [typing, setTyping] = React.useState(false);
     const [text, setText] = React.useState('');
     const [file, setFile] = React.useState(null);
+    const [errors, setErrors] = React.useState([]);
+    const [progressPercentage, setProgressPercentage] = React.useState(0)
 
     const handleFileChange = (e) => {
         if(e.target.files[0]){
@@ -16,10 +17,29 @@ const PostCreator = (props) => {
         }
     }
 
+    const formValidation = () => {
+        let valid = true;
+        let errors = [];
+
+        if(!text && !file) {
+            valid = false;
+            errors['emptyError'] = 'Add Text or Image!';
+        }
+
+        setErrors(errors);
+        return valid
+    }
+
     const handlePostSubmit = (e) => {
         e.preventDefault();
-        props.submitPost(props.user, text, file)
+        if(formValidation()) {
+            props.submitPost(props.user, text, file)
+        }
     }
+
+    React.useEffect(() => {
+        setProgressPercentage(props.progress)
+    }, [props.progress])
 
     return (
         <div className='postCreator'>
@@ -30,6 +50,9 @@ const PostCreator = (props) => {
                 </div>
             ) : (
                 <form onSubmit={handlePostSubmit} className='postCreator__form'>
+                    {errors.emptyError && (
+                        <p style={{color: 'red'}}>{errors.emptyError}</p>
+                    )}
                     <div className='postCreator__formItem'>
                         <Avatar className='postCreator__avatar' src={props.user.photoURL}/>
                         <p className='postCreator__userName'>{props.user.displayName}</p>
@@ -43,19 +66,23 @@ const PostCreator = (props) => {
                         </label>
                         <input accept='image/*' onChange={handleFileChange} id="file-upload" type="file"/>
                     </div>
-
-                    <button type='submit'>SHARE</button>
+                    <div className="postCreator__buttons">
+                        <button type='submit'>SHARE</button>
+                        <button style={{background: 'red'}} onClick={() => setTyping(false)}>CANCEL</button>
+                    </div>
+                    <div className="postCreator__progressContainer">
+                        <div style={{width: `${progressPercentage}%`}} className="postCreator__progressBar"></div>
+                    </div>
                 </form>
             )}
-    
         </div>
     )
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
-        user: state.firebase.auth
+        user: state.firebase.auth,
+        progress: state.progress
     }
 }
 

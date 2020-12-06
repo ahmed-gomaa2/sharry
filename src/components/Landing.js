@@ -26,7 +26,6 @@ const Landing = (props) => {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         user: state.firebase.auth
     }

@@ -1,8 +1,8 @@
 .postCreator {
-    width: 70%;
+    width: 30%;
     min-width: 400px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 20px 0;
     background-color: teal;
     border-radius: 5px;
 }
@@ -12,6 +12,7 @@
     flex-direction: row;
     align-items: center;
     color: white;
+    margin: 20px;
 }
 
 .postCreator__avatar {
@@ -89,4 +90,24 @@ input[type="file"] {
 .postCreator__form button:hover {
     background-color: thistle;
     color: blue;
+}
+
+.postCreator__progressContainer {
+    display: flex;
+    flex: 1;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.postCreator__progressBar{
+    width: 0;
+    height: 100%;
+    background: green;
+}
+
+@media only screen and (max-width: 500px) {
+    .postCreator {
+        width: 100%;
+        min-width: 200px;
+    }
 }
